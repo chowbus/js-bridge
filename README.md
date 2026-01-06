@@ -1,7 +1,5 @@
 # 🌉 Native Bridge
 
-Universal Native Bridge for WebView communication (iOS/Android)
-
 一个通用的 WebView 与原生应用通信的 JavaScript 桥接库，支持 iOS 和 Android 平台。
 
 ## ✨ 特性
@@ -26,17 +24,6 @@ Universal Native Bridge for WebView communication (iOS/Android)
 <!-- 使用指定版本 (生产环境推荐) -->
 <script src="https://cdn.jsdelivr.net/gh/chowbus/js-bridge@1.0.0/dist/native-bridge.min.js"></script>
 ```
-
-#### npm 包 (如果已发布)
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/@chowbus/native-bridge@latest/dist/native-bridge.min.js"></script>
-```
-
-#### GitHub Pages (如果已启用)
-
-```html
-<script src="https://chowbus.github.io/js-bridge/dist/native-bridge.min.js"></script>
 ```
 
 ### 通过 npm 安装
@@ -357,21 +344,4 @@ js-bridge/
 - `native-bridge.cjs.js` - CommonJS 格式
 - `native-bridge.min.js` - 压缩版本
 
-## 🤝 贡献
-
-欢迎提交 Issue 和 Pull Request！
-
-## 📄 License
-
-MIT License - 详见 [LICENSE](LICENSE) 文件
-
-## 🔗 链接
-
-- [GitHub 仓库](https://github.com/chowbus/js-bridge)
-- [问题反馈](https://github.com/chowbus/js-bridge/issues)
-- [CDN (jsDelivr)](https://cdn.jsdelivr.net/gh/chowbus/js-bridge@latest/dist/native-bridge.min.js)
-
-## 📮 联系方式
-
-如有问题或建议，请通过 GitHub Issues 联系我们。
 
