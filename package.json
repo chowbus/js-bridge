@@ -1,0 +1,42 @@
+{
+  "name": "@chowbus/native-bridge",
+  "version": "1.0.0",
+  "description": "Universal Native Bridge for WebView communication (iOS/Android)",
+  "main": "dist/native-bridge.js",
+  "module": "dist/native-bridge.esm.js",
+  "unpkg": "dist/native-bridge.min.js",
+  "type": "module",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "native",
+    "bridge",
+    "webview",
+    "ios",
+    "android",
+    "hybrid",
+    "javascript"
+  ],
+  "author": "Your Company",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourcompany/native-bridge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourcompany/native-bridge/issues"
+  },
+  "homepage": "https://github.com/yourcompany/native-bridge#readme",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.0.0"
+  }
+}

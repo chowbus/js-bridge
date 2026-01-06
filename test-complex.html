@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>NativeBridge Complex Test</title>
+</head>
+<body>
+  <h1>NativeBridge Complex Structure Test</h1>
+  
+  <div>
+    <button onclick="testCall()">Test Call</button>
+    <button onclick="testSend()">Test Send</button>
+    <button onclick="testOn()">Test On</button>
+    <button onclick="testPlatform()">Test Platform</button>
+    <button onclick="testLog()">Toggle Log</button>
+  </div>
+  
+  <div id="result" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;">
+    <h3>Result:</h3>
+    <pre id="output"></pre>
+  </div>
+
+  <script src="dist/native-bridge.js"></script>
+  <script>
+    function log(message) {
+      const output = document.getElementById('output');
+      output.textContent = message + '\n' + output.textContent;
+    }
+
+    async function testCall() {
+      try {
+        log('Testing call...');
+        const result = await NativeBridge.call('testMethod', { param: 'value' });
+        log('Call result: ' + JSON.stringify(result, null, 2));
+      } catch (error) {
+        log('Call error: ' + error.message);
+      }
+    }
+
+    function testSend() {
+      log('Testing send...');
+      NativeBridge.send('testSend', { data: 'test' });
+      log('Send completed');
+    }
+
+    function testOn() {
+      log('Testing on...');
+      NativeBridge.on('testEvent', (data) => {
+        log('Event received: ' + JSON.stringify(data, null, 2));
+      });
+      log('Listening for testEvent');
+    }
+
+    function testPlatform() {
+      const platform = NativeBridge.getPlatform();
+      log('Platform info:\n' + JSON.stringify(platform, null, 2));
+    }
+
+    let logEnabled = true;
+    function testLog() {
+      logEnabled = !logEnabled;
+      NativeBridge.setLogEnabled(logEnabled);
+      log('Log ' + (logEnabled ? 'enabled' : 'disabled'));
+    }
+
+    // 初始化测试
+    log('NativeBridge loaded');
+    log('Platform: ' + NativeBridge.getPlatform().type);
+    log('Is Native: ' + NativeBridge.isNative());
+  </script>
+</body>
+</html>
