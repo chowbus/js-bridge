@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>NativeBridge CDN Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #f5f5f5;
+    }
+    pre {
+      background: white;
+      padding: 10px;
+      border-radius: 4px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌉 NativeBridge CDN Test</h1>
+  <p>这个页面通过 CDN 加载 js-bridge</p>
+  
+  <div>
+    <button onclick="testCall()">测试 Call</button>
+    <button onclick="testSend()">测试 Send</button>
+    <button onclick="testOn()">测试 On</button>
+    <button onclick="testPlatform()">测试 Platform</button>
+    <button onclick="testLog()">切换日志</button>
+    <button onclick="clearLog()">清空日志</button>
+  </div>
+  
+  <div id="result">
+    <h3>运行结果：</h3>
+    <pre id="output"></pre>
+  </div>
+
+  <!-- 从 CDN 加载 NativeBridge -->
+  <!-- 方式1: 使用 jsDelivr (推荐) -->
+  <script src="https://cdn.jsdelivr.net/gh/chowbus/js-bridge@latest/dist/native-bridge.min.js"></script>
+  
+  <!-- 方式2: 如果发布到 npm，可以使用 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@chowbus/native-bridge@latest/dist/native-bridge.min.js"></script> -->
+  
+  <!-- 方式3: 如果启用了 GitHub Pages -->
+  <!-- <script src="https://chowbus.github.io/js-bridge/dist/native-bridge.min.js"></script> -->
+  
+  <script>
+    function log(message) {
+      const output = document.getElementById('output');
+      const timestamp = new Date().toLocaleTimeString();
+      output.textContent = `[${timestamp}] ${message}\n` + output.textContent;
+    }
+
+    function clearLog() {
+      document.getElementById('output').textContent = '';
+    }
+
+    async function testCall() {
+      try {
+        log('🔵 测试 call 方法...');
+        const result = await NativeBridge.call('testMethod', { 
+          param: 'value',
+          timestamp: Date.now()
+        });
+        log('✅ Call 成功: ' + JSON.stringify(result, null, 2));
+      } catch (error) {
+        log('❌ Call 失败: ' + error.message);
+      }
+    }
+
+    function testSend() {
+      log('🔵 测试 send 方法...');
+      NativeBridge.send('testSend', { 
+        data: 'test data',
+        timestamp: Date.now()
+      });
+      log('✅ Send 已发送');
+    }
+
+    function testOn() {
+      log('🔵 测试 on 方法...');
+      NativeBridge.on('testEvent', (data) => {
+        log('📨 收到事件: ' + JSON.stringify(data, null, 2));
+      });
+      log('✅ 开始监听 testEvent');
+    }
+
+    function testPlatform() {
+      const platform = NativeBridge.getPlatform();
+      log('📱 平台信息:\n' + JSON.stringify(platform, null, 2));
+      log('🔍 是否原生环境: ' + NativeBridge.isNative());
+    }
+
+    let logEnabled = true;
+    function testLog() {
+      logEnabled = !logEnabled;
+      NativeBridge.setLogEnabled(logEnabled);
+      log('📝 日志已' + (logEnabled ? '启用' : '禁用'));
+    }
+
+    // 初始化
+    window.addEventListener('DOMContentLoaded', () => {
+      log('✅ NativeBridge 从 CDN 加载成功');
+      log('📱 当前平台: ' + NativeBridge.getPlatform().type);
+      log('🔍 是否原生环境: ' + NativeBridge.isNative());
+      
+      // 显示加载的脚本来源
+      const scripts = document.querySelectorAll('script[src*="native-bridge"]');
+      scripts.forEach(script => {
+        if (script.src) {
+          log('📦 加载来源: ' + script.src);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+

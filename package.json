@@ -29,12 +29,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourcompany/native-bridge.git"
+    "url": "https://github.com/chowbus/js-bridge.git"
   },
   "bugs": {
-    "url": "https://github.com/yourcompany/native-bridge/issues"
+    "url": "https://github.com/chowbus/js-bridge/issues"
   },
-  "homepage": "https://github.com/yourcompany/native-bridge#readme",
+  "homepage": "https://github.com/chowbus/js-bridge#readme",
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
     "rollup": "^4.0.0"
